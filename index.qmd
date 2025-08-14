@@ -1,6 +1,6 @@
 ---
-#title: "Apresentação de pesquisa"
-#author: "Victor Gabriel Alcantara"
+title: "Apresentação de pesquisa"
+author: "Victor Gabriel Alcantara"
 format: 
   revealjs:
     title-slide: false
@@ -16,14 +16,23 @@ format:
     multiplex: false
     progress: true
     plugins: [notes]
-    logo: "img/senai-logo.png" # optional
+    logo: "img/senai-logo.png"
     fontsize: 1.5em
+
+# Para gerar saída HTML no diretório raiz
+project:
+  type: website
+  output-dir: "."
+
 execute:
   echo: false
+
 bibliography: references.bib
+
 editor_options: 
   chunk_output_type: console
 ---
+
 
 ##  {background-image="img/senai-logo.png" background-size="10%" background-position="top"}
 
