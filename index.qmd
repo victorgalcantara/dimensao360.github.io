@@ -1,0 +1,244 @@
+---
+#title: "Apresentação de pesquisa"
+#author: "Victor Gabriel Alcantara"
+format: 
+  revealjs:
+    title-slide: false
+    theme: simple
+    transition: fade
+    slide-number: true
+    incremental: true
+    center: true
+    toc: false
+    chalkboard: false
+    width: 1280
+    height: 720
+    multiplex: false
+    progress: true
+    plugins: [notes]
+    logo: "img/senai-logo.png" # optional
+    fontsize: 1.5em
+execute:
+  echo: false
+bibliography: references.bib
+editor_options: 
+  chunk_output_type: console
+---
+
+##  {background-image="img/senai-logo.png" background-size="10%" background-position="top"}
+
+::: {style="text-align:center; font-size:1.8em; color:black;"}
+Apresentação de pesquisa <br> Programa Dimensão 360º
+:::
+
+<br><br>
+
+::: {style="text-align:left; font-size:1.1em; line-height:1.8; color:black;"}
+<strong>Responsável:</strong> Victor Gabriel Alcantara <br> <strong>Supervisor:</strong> Marcelo Webert Santos da Silva <br> <strong>Interlocução GED:</strong> Karina Teodoro Dias da Silva <br>
+:::
+
+<br><br><br><br>
+
+::: {style="text-align:center; font-size:1.1em; color:black;"}
+Terça-feira, 2 de setembro de 2025 — 09:30 (América/São Paulo)
+:::
+
+------------------------------------------------------------------------
+
+## [Programa Dimensão 360º <br> Análise descritiva exploratória]{style="color:#2F5DA7"}
+
+<br>
+
+### [<strong>Responsável</strong>]{style="color:#2F5DA7"}
+
+Victor G. Alcantara
+
+<br>
+
+📅 [Linha do tempo da pesquisa]{style="color:#2F5DA7"}
+
+```{r, message=F,warning=F,error=F}
+library(pacman)
+p_load("timevis")
+
+my_timeline <- data.frame(
+  id = 1:7,
+  content = c(
+    "💡 Concepção da demanda",
+    "🛠️ Dados e metodologia",
+    "🔍 Revisão de literatura",
+    "🛠 Tratamento dos dados",
+    "📊 Análise descritiva",
+    "📄 Redação de Relatório",
+    "🌍 Apresentação e sugestões"
+  ),
+  start = c(
+    "2025-06-10",
+    "2025-06-15",
+    "2025-06-20",
+    "2025-07-05",
+    "2025-07-20",
+    "2025-08-20",
+    "2025-09-15"
+  ),
+  title = c(
+    "Identificação do problema de pesquisa e formulação das hipóteses com base em dados preliminares.",
+    "Definição das fontes de dados e escolha dos métodos estatísticos (modelo multinível).",
+    "Revisão sistemática da literatura nacional e internacional sobre desigualdades escolares.",
+    "Limpeza dos dados, construção de variáveis e análise estatística em R.",
+    "Apresentação dos resultados em seminários e recebimento de feedback de especialistas.",
+    "Submissão, aceitação e publicação em periódico nacional; divulgação via preprint e redes.",
+    "Citações em veículos como *O Globo* e uso em debates sobre políticas educacionais."
+  )
+)
+
+timevis(
+  data = my_timeline,
+  options = list(
+    locale = "en",
+    orientation = "bottom",
+    width = "150%",   # Aproveita toda a largura
+    showCurrentTime = TRUE   # remove a linha vermelha de "hoje"
+    #height = "200px"  # Altura ajustável conforme necessário
+  )
+) %>% htmlwidgets::onRender("
+  function(el) {
+    // Fonte
+    el.style.fontFamily = 'Times New Roman';
+
+    // Remover bordas e linhas externas
+    const timeline = el.querySelector('.vis-timeline');
+    if (timeline) {
+      timeline.style.border = 'none';
+    }
+
+    const frames = el.querySelectorAll('.vis-panel.vis-bottom, .vis-panel.vis-center');
+    frames.forEach(panel => {
+      panel.style.borderTop = 'none';
+    });
+    
+      // Estilizar a linha do tempo atual
+    const linhaAtual = el.querySelector('.vis-current-time');
+    if (linhaAtual) {
+      linhaAtual.style.borderLeft = '1.5px dashed red'; // tracejada e vermelha
+      linhaAtual.style.zIndex = '0'; // envia para trás
+    }
+
+  }
+")
+
+```
+
+------------------------------------------------------------------------
+
+## [Contexto e questões do estudo]{style="color:#2F5DA7"}
+
+2.3 ESTUDO PREPARATÓRIO SOBRE O IMPACTO DO PROGRAMA DIMENSÃO 360º
+
+:   [**Objetivo:**]{style="color:#2F5DA7"} Iniciar o monitoramento estruturado do programa, identificando evidências iniciais de seus efeitos.
+
+:   [**Entregas:**]{style="color:#2F5DA7"} Relatório da pesquisa, recomendações e apresentação executiva aos supervisores.
+
+:   [**Prazo:**]{style="color:#2F5DA7"} Setembro/2025.
+
+[**Descrição exploratória**]{style="color:#2F5DA7"}
+
+-   Organização dos dados disponíveis;
+-   Tratamento dos dados.
+
+[**Análise de impacto**]{style="color:#2F5DA7"}
+
+-   Modelagem de dados
+-   Métodos e técnicas de análise de impacto (Dif-in-Dif e regressão discontínua)
+
+1.  Qual foi a dimensão do efeito do programa no Bem-estar psicossocial dos estudantes?
+2.  O Dimensão 360º promoveu bem-estar nas escolas?
+
+------------------------------------------------------------------------
+
+## [Proporção de dados pareados]{style="color:#2F5DA7"}
+
+![](img/tab01.png){#tab-pareamento width=100%}
+
+------------------------------------------------------------------------
+
+## [Distribuição percentil das ocorrências por aluno]{style="color:#2F5DA7"}
+
+```{r}
+library(rio)
+load('../../3_outp/1_graph/plot_total_ocorrencia-aluno_percentis.R')
+p
+```
+
+------------------------------------------------------------------------
+
+## [Distribuição das ocorrências no tempo]{style="color:#2F5DA7"}
+
+```{r}
+load('../../3_outp/1_graph/plot_porcentagem_registros_tempo.R')
+p
+```
+
+## [Distribuição das ocorrências no tempo - por gravidade]{style="color:#2F5DA7"}
+
+```{r}
+load('../../3_outp/1_graph/plot_porcentagem_registros_tempo_gravidade.R')
+p
+```
+
+------------------------------------------------------------------------
+
+## [Distribuição das ocorrências no tempo - por gravidade]{style="color:#2F5DA7"}
+
+```{r}
+load('../../3_outp/1_graph/plot_porcentagem_registros_chr.R')
+p
+```
+
+------------------------------------------------------------------------
+
+## [Distribuição das ocorrências no Estado]{style="color:#2F5DA7"}
+
+```{r}
+load('../../3_outp/1_graph/plotly_mapa.R')
+p
+```
+
+------------------------------------------------------------------------
+
+## [<strong>Sugestões</strong>]{style="color:#0D3D77"}
+
+<br>
+
+-   📰 **🛠 Dados:**
+    -   Pareamento;
+    -   Padronização da coleta e comparabilidade.
+
+<br>
+
+-   📄 **🛠 Programa:**
+    -   Registro com qualidade AQV's;
+    -   Definição de resultados a serem impactados.
+
+<br>
+
+## Contato
+
+::: {style="font-size: 80%; color: #555; line-height: 1.4;"}
+### 📧 E-mail
+
+[**victor.galcantara\@sp.senai.br**](mailto:victorgalcantara@usp.br)
+
+### 📚 Perfis acadêmicos
+
+[ORCID: 0000-0001-8846-9652](https://orcid.org/0000-0001-8846-9652)\
+[Lattes: 6579920248903712](http://lattes.cnpq.br/6579920248903712)\
+[Google Scholar](https://scholar.google.com)
+
+### 🌐 Redes e repositórios
+
+[LinkedIn](https://linkedin.com/in/victorgalcantara)\
+[GitHub](https://github.com/victorgalcantara)
+:::
+
+## [Referências bibliográficas]{style="color:#2F5DA7"}
